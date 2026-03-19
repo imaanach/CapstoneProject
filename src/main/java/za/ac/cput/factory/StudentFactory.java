@@ -1,6 +1,12 @@
 package za.ac.cput.factory;
 import za.ac.cput.domain.Student;
 import za.ac.cput.util.Helper;
+/*
+StudentFactory.java
+Student with factory class
+Author: Sabelo Ceza - 220094489
+Date: 16/03/2026
+ */
 
 public class StudentFactory {
 
@@ -18,8 +24,9 @@ public class StudentFactory {
         {
             return null;
         }
-
-
+        if (!Helper.isValidEmail(email)) {
+            return null;
+        }
         return new Student.Builder()
                 .setStudentNumber(studentNumber)
                 .setFirstName(firstName)
