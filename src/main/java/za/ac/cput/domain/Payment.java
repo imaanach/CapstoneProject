@@ -15,7 +15,7 @@ public class Payment {
     private String paymentMethod;
     private String status;
 
-    public Payment() {
+    private Payment() {
     }
 
     private Payment(Builder builder) {
