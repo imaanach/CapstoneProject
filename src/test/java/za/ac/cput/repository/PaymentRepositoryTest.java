@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 import za.ac.cput.domain.Payment;
 import za.ac.cput.factory.PaymentFactory;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /*
@@ -22,11 +24,9 @@ class PaymentRepositoryTest {
     Payment payment = PaymentFactory.createPayment(
             "PAY001",
             1500.00,
-            "2026-03-25",
+            LocalDateTime.now(),
             "Card",
-            "Completed",
-            "TRX001",
-            "BOOK001"
+            "Completed"
     );
 
     @Test
