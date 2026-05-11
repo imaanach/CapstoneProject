@@ -1,4 +1,5 @@
 package za.ac.cput.domain;
+import java.util.List;
 
 /*
 subject.java
@@ -16,6 +17,8 @@ public class Tutor {
     private String phoneNumber;
     private String password;
     private double hourlyRate;
+    private List<Booking> bookings;
+
 
     private Tutor() {
     }
