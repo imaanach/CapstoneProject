@@ -9,11 +9,13 @@ Date: 15 March 2026
 
 import za.ac.cput.domain.Tutor;
 import za.ac.cput.util.Helper;
+import za.ac.cput.domain.Booking;
+import java.util.List;
 
 public class TutorFactory {
     public static Tutor createTutor(String tutorId, String firstName, String lastName, String email,
                                     String phoneNumber, String password,
-                                    double hourlyRate) {
+                                    double hourlyRate,List<Booking> bookings ) {
 
         if (Helper.isNullOrEmpty(tutorId)
                 || Helper.isNullOrEmpty(firstName)
@@ -37,6 +39,7 @@ public class TutorFactory {
                 .setPhoneNumber(phoneNumber)
                 .setPassword(password)
                 .setHourlyRate(hourlyRate)
+                .setBookings(bookings)
                 .build();
     }
 }
