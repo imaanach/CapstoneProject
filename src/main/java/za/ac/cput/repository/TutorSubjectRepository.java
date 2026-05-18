@@ -38,12 +38,16 @@ public class TutorSubjectRepository implements ITutorSubjectRepository {
 
     @Override
     public TutorSubject read(TutorSubjectId id) {
+
         for (TutorSubject tutorSubject : tutorSubjects) {
-            if (tutorSubject.getSubjectCode().equals(id)
-                    && tutorSubject.getTutorId().equals(id())) {
+
+            if (tutorSubject.getSubjectCode().equals(id.getSubjectCode())
+                    && tutorSubject.getTutorId().equals(id.getTutorId())) {
+
                 return tutorSubject;
             }
         }
+
         return null;
     }
     @Override

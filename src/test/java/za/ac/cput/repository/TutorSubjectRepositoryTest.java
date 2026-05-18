@@ -1,11 +1,7 @@
 package za.ac.cput.repository;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import za.ac.cput.domain.Subject;
-import za.ac.cput.domain.Tutor;
-import za.ac.cput.domain.TutorSubject;
+import org.junit.jupiter.api.*;
+import za.ac.cput.domain.*;
 import za.ac.cput.factory.SubjectFactory;
 import za.ac.cput.factory.TutorFactory;
 import za.ac.cput.factory.TutorSubjectFactory;
@@ -20,7 +16,7 @@ TutorSubject Repository Test class
 Author: Charmaine Dlamini - 222056401
 Date: 1/05/2026
 */
-
+@TestMethodOrder(MethodOrderer.MethodName.class)
 class TutorSubjectRepositoryTest {
 
     private static ITutorSubjectRepository repository = TutorSubjectRepository.getRepository();
@@ -37,6 +33,8 @@ class TutorSubjectRepositoryTest {
         );
 
         subjects.add(subject);
+
+        List<Booking> bookings = new ArrayList<>();
         List<Tutor> tutors = new ArrayList<>();
         Tutor tutor = TutorFactory.createTutor(
                 "T001",
@@ -45,7 +43,8 @@ class TutorSubjectRepositoryTest {
                 "imaan@gmail.com",
                 "0211377053",
                 "password",
-                150.0
+                150.0,
+                bookings
         );
 
         tutors.add(tutor);
@@ -67,8 +66,12 @@ class TutorSubjectRepositoryTest {
 
     @Test
     void b_read() {
+
+        TutorSubjectId id = new TutorSubjectId(
+                tutorSubject.getSubjectCode(),
+                tutorSubject.getTutorId());
         repository.create(tutorSubject);
-        TutorSubject read = repository.read("ADP362S");
+        TutorSubject read = repository.read(id);
         assertNotNull(read);
         System.out.println(read);
     }
@@ -89,7 +92,11 @@ class TutorSubjectRepositoryTest {
     @Disabled
     void e_delete() {
         repository.create(tutorSubject);
-        boolean deleted = repository.delete("ADP362S");
+        TutorSubjectId id = new TutorSubjectId(
+                tutorSubject.getSubjectCode(),
+                tutorSubject.getTutorId());
+
+        boolean deleted = repository.delete(id);
         assertTrue(deleted);
     }
 
