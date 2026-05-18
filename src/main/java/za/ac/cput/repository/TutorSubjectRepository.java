@@ -1,5 +1,7 @@
 package za.ac.cput.repository;
 import za.ac.cput.domain.TutorSubject;
+import za.ac.cput.domain.TutorSubjectId;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +37,10 @@ public class TutorSubjectRepository implements ITutorSubjectRepository {
     }
 
     @Override
-    public TutorSubject read(String subjectCode) {
+    public TutorSubject read(TutorSubjectId id) {
         for (TutorSubject tutorSubject : tutorSubjects) {
-            if (tutorSubject.getSubjectCode().equals(subjectCode)) {
+            if (tutorSubject.getSubjectCode().equals(id)
+                    && tutorSubject.getTutorId().equals(id())) {
                 return tutorSubject;
             }
         }
@@ -45,8 +48,10 @@ public class TutorSubjectRepository implements ITutorSubjectRepository {
     }
     @Override
     public TutorSubject update(TutorSubject tutorSubject) {
-        String subjectCode = tutorSubject.getSubjectCode();
-        TutorSubject oldTutorSubject = read(subjectCode);
+        TutorSubjectId id  = new TutorSubjectId(
+                tutorSubject.getSubjectCode(),
+                tutorSubject.getTutorId());
+        TutorSubject oldTutorSubject = read(id);
         if (oldTutorSubject != null) {
             tutorSubjects.remove(oldTutorSubject);
             tutorSubjects.add(tutorSubject);
@@ -55,8 +60,8 @@ public class TutorSubjectRepository implements ITutorSubjectRepository {
         return null;
     }
     @Override
-    public boolean delete(String subjectCode) {
-        TutorSubject tutorSubjectToDelete = read(subjectCode);
+    public boolean delete(TutorSubjectId  id) {
+        TutorSubject tutorSubjectToDelete = read(id);
         if (tutorSubjectToDelete != null) {
             tutorSubjects.remove(tutorSubjectToDelete);
             return true;
