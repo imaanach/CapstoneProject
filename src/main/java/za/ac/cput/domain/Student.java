@@ -6,9 +6,9 @@ Author: Sabelo Ceza - 220094489
 Date: 13/03/2026
  */
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 public class Student {
@@ -20,7 +20,8 @@ public class Student {
     private String phoneNumber;
     private String password;
     private String levelOfStudy;
-    private List<Booking> bookings;
+    @OneToMany(mappedBy ="student", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Booking> bookings = new ArrayList<>();
 
     protected Student(){
     }
