@@ -27,7 +27,7 @@ class StudentFactoryTest {
         Booking booking = BookingFactory.createBooking("B12345", "222056401",
                 "ADP362S", "Online", "2 hours", "T987654",
                 LocalDateTime.of(2026, 5, 20 , 10, 30));
-
+        //Getting a list of bookings
         List<Booking> bookings = List.of(booking);
 
         Student student = StudentFactory.createStudent("220094489","Sabelo",
