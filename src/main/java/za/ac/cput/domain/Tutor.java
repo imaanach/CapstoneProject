@@ -1,7 +1,8 @@
+package za.ac.cput.domain;
+
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
 /*
 Tutor.java
 Tutor domain class
