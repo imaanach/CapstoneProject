@@ -22,7 +22,7 @@ public class Booking {
     private LocalDateTime date;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "studentNumber")
     private Student student;
 
     @OneToOne(mappedBy = "booking",
